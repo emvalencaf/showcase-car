@@ -10,12 +10,12 @@ const validate = (req, res, next) => {
     // If hasn't errors move on
     if(errors.isEmpty()) return next();
 
-    const extractedErros = [];
+    const extractedErrors = [];
 
     errors.array().map( err => extractedErrors.push(err.msg));
 
     return res.status(422).json({
-        errors: extractedErros
+        errors: extractedErrors
     });
 
 };
