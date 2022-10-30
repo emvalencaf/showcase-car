@@ -2,6 +2,12 @@
 
 O backend desse projeto foi desenvolvido usando o NodeJS com o framework do Express e com o banco de dados do mongoDB.
 
+## Sobre o projeto
+
+O design pattern escolhido foi o Repository para separar as regras do negócio das requisições ao banco de dados.
+
+Consequentemente, os controller ficaram responsáveis apenas pelas regras de negócio e os repositórios pelas interações com o banco de dados.
+
 ## Como fazer a conexão ao mongoDB
 
 Para fazer a conexão ao mongoDB é necessário passar os valores das credenciais do usuário (do banco de dados) e a url do banco dde dados via as seguintes variáveis de ambiente:
