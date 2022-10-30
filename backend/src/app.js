@@ -1,6 +1,6 @@
 // modules
 const express = require('express');
-
+const cors = require('cors');
 
 // initialize app
 const app = express();
@@ -12,6 +12,11 @@ const app = express();
 app.use(express.json()); // to work with JSON responses
 app.use(express.urlencoded({extended: false})); // to work with FormData
 
+    // Solve CORS
+app.use(cors({
+    credentials: true,
+    origin:'http://localhost:3000'
+}));
 
     // routes
 const router = require('./routes/Router');

@@ -5,6 +5,15 @@ const express = require('express');
 const router = express();
 
     // user routes
-router.use('/api/users', require('./user/User.routes'));
+router.use('/api/user', require('./user/User.routes'));
+
+
+    // test route
+router.get('/', (req, res) => {
+
+    res.send('API working!!');
+
+});
+
 
 module.exports = router;

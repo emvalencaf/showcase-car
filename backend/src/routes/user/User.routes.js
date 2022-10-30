@@ -13,14 +13,20 @@ const {
 
 
 // Middlewares
+
     // validation
 const validate = require('../../middlewares/handleValidation.middleware');
 
 const {
-
+    userCreateValidation,
+    loginValidation
 } = require('../../middlewares/validation/User.validation');
 
 
 
+
+
 // routes
-router.post('/register', validate, register);
+router.post('/register', userCreateValidation(), validate, register);
+
+module.exports = router;

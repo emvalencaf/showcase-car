@@ -1,6 +1,8 @@
 // modules
     // app
 const app = require('./src/app');
+    // db
+const connectDB = require('./src/db/connect.db');
 
 // environment variables
 const PORT = process.env.PORT || 3000;
