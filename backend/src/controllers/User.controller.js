@@ -9,7 +9,8 @@ const {
 const {
     findUserByEmail,
     createUser,
-    findUserById
+    findUserById,
+    updateUserData
 } = require('../repository/User.repository');
 
 // Controller
@@ -55,6 +56,7 @@ const login = async (req, res) => {
 
 };
 
+// get user jwt token by id
 const getIdAndToken = (id) => {
     return {
         _id: id,
@@ -62,12 +64,35 @@ const getIdAndToken = (id) => {
     };
 };
 
+// get user by id
 const getUserById = async (id) => {
+
+    if(!id && req.params.id) id = req.params.id;
+
     return await findUserById(id);
+};
+
+// update an user
+const updateUser = async (req, res) => {
+
+    const { name, password } = req.body;
+
+    // user's data get by the authGuard
+    const reqUser = req.user;
+
+    const user = await updateUser(reqUser,{
+        name,
+        password
+    });
+
+    res.status(200).json(user);
+
 };
 
 
 module.exports = {
     register,
-    getUserById
+    getUserById,
+    login,
+    updateUser
 };

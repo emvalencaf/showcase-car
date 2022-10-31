@@ -10,7 +10,8 @@ const router = express.Router();
 const {
     register,
     login,
-    update // not yet implemented
+    updateUser,
+    getUserById
 } = require('../../controllers/User.controller');
 
 
@@ -21,13 +22,12 @@ const validate = require('../../middlewares/handleValidation.middleware');
 
 const {
     userCreateValidation,
-    loginValidation
+    loginValidation,
+    userUpdateValidation
 } = require('../../middlewares/validation/User.validation');
 
     // Auth
-const {
-    authGuard
-} = require("../../middlewares/authGuard.middleware");
+const authGuard = require("../../middlewares/authGuard.middleware");
 
 
 // routes
@@ -44,8 +44,14 @@ router.post('/login',
 );
 
 router.update('/update',
+    authGuard,
+    userUpdateValidation(),
     validate,
-    update // not yet implemented
+    updateUser
+);
+
+router.getUserById('/:id',
+    getUserById
 );
 
 module.exports = router;

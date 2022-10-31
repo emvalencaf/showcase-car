@@ -1,5 +1,6 @@
 // modules
 const bcrypt = require('bcryptjs');
+const { default: mongoose } = require('mongoose');
 const User = require('../models/User.model');
 
 
@@ -29,11 +30,27 @@ const createUser = async (userData) => {
 
     // get user by id
 const findUserById = async (id) =>{
-    return await User.findById(id);
+    return await User.findById(mongoose.Types.ObjectId(id).select('-password'));
+};
+
+    // update user
+const updateUserData = async (userData, newData) => {
+
+    const { name, password } = newData;
+
+    const user = await findUserById(userData._id);
+
+    if(name) user.name = name;
+
+    if(password) user.password = password;
+
+    return await user.save();
+
 };
 
 module.exports = {
     findUserByEmail,
     createUser,
-    findUserById
+    findUserById,
+    updateUserData
 };
