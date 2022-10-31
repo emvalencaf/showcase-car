@@ -30,7 +30,16 @@ const createUser = async (userData) => {
 
     // get user by id
 const findUserById = async (id) =>{
-    return await User.findById(mongoose.Types.ObjectId(id).select('-password'));
+
+    // Check if was passed an id or valid id
+    try{
+        return await User.findById(mongoose.Types.ObjectId(id).select('-password'));
+
+    } catch(err){
+
+        return;
+    };
+
 };
 
     // update user

@@ -43,7 +43,7 @@ router.post('/login',
     login
 );
 
-router.update('/update',
+router.patch('/update',
     authGuard,
     userUpdateValidation(),
     validate,

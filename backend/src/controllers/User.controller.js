@@ -69,7 +69,9 @@ const getUserById = async (id) => {
 
     if(!id && req.params.id) id = req.params.id;
 
-    return await findUserById(id);
+    const user = await findUserById(id);
+
+    if(!user) return res.status(404).json({errors:['Usuário não encontrado']});
 };
 
 // update an user
