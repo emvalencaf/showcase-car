@@ -82,7 +82,7 @@ const updateUser = async (req, res) => {
     // user's data get by the authGuard
     const reqUser = req.user;
 
-    const user = await updateUser(reqUser,{
+    const user = await updateUserData(reqUser,{
         name,
         password
     });

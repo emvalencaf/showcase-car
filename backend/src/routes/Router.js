@@ -5,10 +5,10 @@ const express = require('express');
 const router = express();
 
     // user routes
-router.use('/api/user', require('./user/User.routes'));
+router.use('/api/users', require('./user/User.routes'));
 
     // car routes
-router.use('/api/car', require('./car/Car.routes'));
+router.use('/api/cars', require('./car/Car.routes'));
 
     // test route
 router.get('/', (req, res) => {
