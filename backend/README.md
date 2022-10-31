@@ -8,6 +8,12 @@ O design pattern escolhido foi o Repository para separar as regras do negócio d
 
 Consequentemente, os controller ficaram responsáveis apenas pelas regras de negócio e os repositórios pelas interações com o banco de dados.
 
+### Quanto a organização do projeto
+
+O projeto foi organizado de forma semântica e, tentando, respeitar o modelo de projeto Repository. Assim, os métodos em controller são os únicos que acessaram os métodos no repositórios.
+
+Os middlewares (autenticação e validação) mais complexos da aplicação ficaram todos em um diretório único.
+
 ## Como fazer a conexão ao mongoDB
 
 Para fazer a conexão ao mongoDB é necessário passar os valores das credenciais do usuário (do banco de dados) e a url do banco dde dados via as seguintes variáveis de ambiente:

@@ -8,7 +8,9 @@ const router = express.Router();
 
 // Controller
 const {
-    register
+    register,
+    login,
+    update // not yet implemented
 } = require('../../controllers/User.controller');
 
 
@@ -29,6 +31,21 @@ const {
 
 
 // routes
-router.post('/register', userCreateValidation(), validate, register);
+router.post('/register',
+    userCreateValidation(),
+    validate,
+    register
+);
+
+router.post('/login',
+    loginValidation(),
+    validate,
+    login
+);
+
+router.update('/update',
+    validate,
+    update // not yet implemented
+);
 
 module.exports = router;
