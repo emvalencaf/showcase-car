@@ -16,7 +16,7 @@ Para fazer a conexão ao mongoDB é necessário passar os valores das credenciai
     DB_USER = // para o usuário
     DB_PASS = // para a senha
 ```
-Com isso será construído algo similar a essa url: mongodb+srv://<DB_USER>:<DB_PASS>@<DB_URL>
+Com isso será construído algo similar a essa url: ``mongodb+srv://<DB_USER>:<DB_PASS>@<DB_URL>``
 
 ## Como abrir o servidor
 
@@ -28,11 +28,11 @@ Há das formas de abrir o servidor dessa API:
 ### Ambiente de desenvolvimento
 
 Em ambiente de desenvolvimento essa API tem suas variáveis de ambiente passadas em um arquivo .env em que deverão ser colocadas as seguintes variáveis:
-``
+```
     DB_URL= // para a URL
     DB_USER = // para o usuário
     DB_PASS = // para a senha
-``
+```
 Configurado o arquivo .env na raiz do projeto backend basta abrir o terminal e digitar o comando: ``npm run dev ``.
 
 ### Ambiente de produção
