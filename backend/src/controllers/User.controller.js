@@ -1,26 +1,14 @@
 // modules
-const jwt = require('jsonwebtoken');
-
-// AUTH
-const jwtSecret = process.env.JWT_SECRET;
-
-    // Generate user's token
-const generateToken = (id) => {
-
-    return jwt.sign(
-        {id},
-        jwtSecret,
-        {
-            expiresIn: '7d'
-        }
-    );
-
-};
-
-// Repository
+    // AUTH
 const {
-    findUser,
-    createUser
+    generateToken
+} = require('../auth/generateToken.auth');
+
+// User Repository
+const {
+    findUserByEmail,
+    createUser,
+    findUserById
 } = require('../repository/User.repository');
 
 // Controller
@@ -30,7 +18,7 @@ const register = async (req, res) => {
     const { name, email, password } = req.body;
 
     // check if user exists
-    const user = await findUser(email);
+    const user = await findUserByEmail(email);
 
     if(user) return res.status(422).json({errors:["Por favor, utilize um e-mail não registrado."]});
 
@@ -52,6 +40,11 @@ const register = async (req, res) => {
 
 };
 
+const getUserById = async (id) => {
+    return await findUserById(id);
+};
+
 module.exports = {
-    register
+    register,
+    getUserById
 };

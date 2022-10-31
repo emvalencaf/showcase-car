@@ -8,7 +8,7 @@ const User = require('../models/User.model');
 // Repository
 
     // find a user by an email
-const findUser = async (email) => {
+const findUserByEmail = async (email) => {
 
     return await User.findOne({email});
 
@@ -27,7 +27,13 @@ const createUser = async (userData) => {
     return await User.create(userData);
 }
 
+    // get user by id
+const findUserById = async (id) =>{
+    return await User.findById(id);
+};
+
 module.exports = {
-    findUser,
-    createUser
+    findUserByEmail,
+    createUser,
+    findUserById
 };

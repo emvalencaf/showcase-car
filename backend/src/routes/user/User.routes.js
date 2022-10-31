@@ -22,8 +22,10 @@ const {
     loginValidation
 } = require('../../middlewares/validation/User.validation');
 
-
-
+    // Auth
+const {
+    authGuard
+} = require("../../middlewares/authGuard.middleware");
 
 
 // routes
