@@ -6,12 +6,7 @@ const {
 } = require('../auth/generateToken.auth');
 
 // User Repository
-const {
-    findUserByEmail,
-    createUser,
-    findUserById,
-    updateUserData
-} = require('../repository/User.repository');
+const repository = require('../repository/User.repository');
 
 // Controller
     // Register user and sign in
@@ -20,12 +15,12 @@ const register = async (req, res) => {
     const { name, email, password } = req.body;
 
     // check if user exists
-    const user = await findUserByEmail(email);
+    const user = await repository.findUserByEmail(email);
 
     if(user) return res.status(422).json({errors:["Por favor, utilize um e-mail não registrado."]});
 
     // Create user
-    const newUser = await createUser({
+    const newUser = await repository.createUser({
         name,
         email,
         password
@@ -43,7 +38,7 @@ const login = async (req, res) => {
 
     const { email, password } = req.body;
 
-    const user = await findUserByEmail(email);
+    const user = await repository.findUserByEmail(email);
 
     // Check if user exists
     if(!user) return res.status(404).json({errors:["Usuário não encontrado."]});
@@ -65,13 +60,15 @@ const getIdAndToken = (id) => {
 };
 
 // get user by id
-const getUserById = async (id) => {
+const getUserById = async (req, res) => {
 
-    if(!id && req.params.id) id = req.params.id;
+    const { id } = req.params;
 
-    const user = await findUserById(id);
+    const user = await repository.findUserById(id);
 
     if(!user) return res.status(404).json({errors:['Usuário não encontrado']});
+
+    res.status(200).json(user);
 };
 
 // update an user
@@ -82,12 +79,16 @@ const updateUser = async (req, res) => {
     // user's data get by the authGuard
     const reqUser = req.user;
 
-    const user = await updateUserData(reqUser,{
+    console.log(reqUser);
+
+    const user = await repository.updateUser(reqUser,{
         name,
         password
     });
 
-    res.status(200).json(user);
+    if(!user) res.status(404).json({errors:['Usuário não encontrado']});
+
+    return res.status(200).json(user);
 
 };
 

@@ -1,6 +1,6 @@
 // modules
 const bcrypt = require('bcryptjs');
-const { default: mongoose } = require('mongoose');
+const mongoose = require('mongoose');
 const User = require('../models/User.model');
 
 
@@ -33,21 +33,23 @@ const findUserById = async (id) =>{
 
     // Check if was passed an id or valid id
     try{
-        return await User.findById(mongoose.Types.ObjectId(id).select('-password'));
+        return await User.findById(mongoose.Types.ObjectId(id)).select('-password');
 
     } catch(err){
-
+        console.log(err);
         return;
     };
 
 };
 
     // update user
-const updateUserData = async (userData, newData) => {
+const updateUser = async (userData, newData) => {
 
     const { name, password } = newData;
 
     const user = await findUserById(userData._id);
+
+    if(!user) return;
 
     if(name) user.name = name;
 
@@ -61,5 +63,5 @@ module.exports = {
     findUserByEmail,
     createUser,
     findUserById,
-    updateUserData
+    updateUser
 };

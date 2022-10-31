@@ -7,21 +7,23 @@ const router = express.Router();
 
 // controller
 const {
-
+    registerCar
 } = require('../../controllers/Car.controller');
-
 // middlewares
 const {
-    insertCarValidation
+    registerCarValidation
 } = require('../../middlewares/validation/Car.validation');
     // AUTH
 const authGuard = require('../../middlewares/authGuard.middleware');
+const { validate } = require('../../models/Car.model');
+
 
 // routes
-router.post('/',
+router.post('/register',
     authGuard,
-    insertCarValidation,
-    
+    registerCarValidation(),
+    validate,
+    registerCar
 );
 
 module.exports = router;

@@ -7,12 +7,7 @@ const router = express.Router();
 
 
 // Controller
-const {
-    register,
-    login,
-    updateUser,
-    getUserById
-} = require('../../controllers/User.controller');
+const controller = require('../../controllers/User.controller');
 
 
 // Middlewares
@@ -34,24 +29,24 @@ const authGuard = require("../../middlewares/authGuard.middleware");
 router.post('/register',
     userCreateValidation(),
     validate,
-    register
+    controller.register
 );
 
 router.post('/login',
     loginValidation(),
     validate,
-    login
+    controller.login
 );
 
-router.patch('/update',
+router.put('/',
     authGuard,
     userUpdateValidation(),
     validate,
-    updateUser
+    controller.updateUser
 );
 
-router.getUserById('/:id',
-    getUserById
+router.get('/:id',
+    controller.getUserById
 );
 
 module.exports = router;
