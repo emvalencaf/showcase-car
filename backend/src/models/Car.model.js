@@ -5,16 +5,17 @@ const mongoose = require('mongoose');
 // Create user's Schema
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
+const carSchema = new Schema({
     name: String,
     brand: String,
     model: String,
-    image: String
+    image: String,
+    price: Number
 },{
     timestamps: true
 });
 
-// Create user's model
-const Car = mongoose.model('Car', userSchema);
+// Create car's model
+const Car = mongoose.model('Car', carSchema);
 
-module.exports = User;
+module.exports = Car;
