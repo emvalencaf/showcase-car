@@ -1,6 +1,7 @@
 // modules
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 // initialize app
 const app = express();
@@ -17,6 +18,11 @@ app.use(cors({
     credentials: true,
     origin:'http://localhost:3000'
 }));
+
+    // Upload directory
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));// in this directory will be saved the photos of our project
+
+console.log(__dirname);
 
     // routes
 const router = require('./routes/Router');

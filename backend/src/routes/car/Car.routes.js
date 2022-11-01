@@ -6,21 +6,45 @@ const router = express.Router();
 
 
 // controller
-const {
-    registerCar
-} = require('../../controllers/Car.controller');
+const controller = require('../../controllers/Car.controller');
+
+
 // middlewares
+const validate = require('../../middlewares/handleValidation.middleware');
+
 const {
     registerCarValidation
 } = require('../../middlewares/validation/Car.validation');
+const { imageUpload } = require('../../middlewares/imageUpload');
     // AUTH
 const authGuard = require('../../middlewares/authGuard.middleware');
-const { validate } = require('../../models/Car.model');
 
 
 // routes
 router.post('/register',
-    registerCar
+    authGuard,
+    imageUpload.single('image'),
+    registerCarValidation(),
+    validate,
+    controller.registerCar
+);
+
+router.get('/',
+    controller.getAllCars
+);
+
+router.get('/:id',
+    controller.getCarById
+);
+
+router.put('/:id',
+    authGuard,
+    controller.updateCar
+);
+
+router.delete('/:id',
+    authGuard,
+    controller.deleteCarById
 );
 
 module.exports = router;
