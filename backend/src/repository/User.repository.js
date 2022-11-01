@@ -55,7 +55,9 @@ const updateUser = async (userData, newData) => {
 
     if(password) user.password = password;
 
-    return await user.save();
+    await user.save();
+
+    return user;
 
 };
 

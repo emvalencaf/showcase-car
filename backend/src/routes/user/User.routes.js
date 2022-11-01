@@ -26,6 +26,9 @@ const authGuard = require("../../middlewares/authGuard.middleware");
 
 
 // routes
+
+router.get('/profile', authGuard, controller.getCurrentUser);
+
 router.post('/register',
     userCreateValidation(),
     validate,

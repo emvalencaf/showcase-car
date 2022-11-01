@@ -59,6 +59,15 @@ const getIdAndToken = (id) => {
     };
 };
 
+// Get current logged in user
+const getCurrentUser = async (req, res) => {
+
+    const user = req.user;
+
+    res.status(200).json(user);
+
+};
+
 // get user by id
 const getUserById = async (req, res) => {
 
@@ -74,22 +83,22 @@ const getUserById = async (req, res) => {
 // update an user
 const updateUser = async (req, res) => {
 
+    // get data fields from req
     const { name, password } = req.body;
 
     // user's data get by the authGuard
     const reqUser = req.user;
 
-    console.log(reqUser);
-
-    const user = await repository.updateUser(reqUser,{
+    const newData = {
         name,
         password
-    });
+    }
+
+    const user = await repository.updateUser(reqUser, newData);
 
     if(!user) res.status(404).json({errors:['Usuário não encontrado']});
 
     return res.status(200).json(user);
-
 };
 
 
@@ -97,5 +106,6 @@ module.exports = {
     register,
     getUserById,
     login,
-    updateUser
+    updateUser,
+    getCurrentUser
 };

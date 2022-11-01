@@ -20,9 +20,6 @@ const { validate } = require('../../models/Car.model');
 
 // routes
 router.post('/register',
-    authGuard,
-    registerCarValidation(),
-    validate,
     registerCar
 );
 
