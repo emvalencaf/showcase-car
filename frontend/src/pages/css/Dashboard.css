@@ -14,7 +14,7 @@
 
 #login h2,
 #register h2,
-#car-register h2{
+.car-form h2{
     text-align: center;
     font-size: 2.1em;
     margin-top: 0;
@@ -28,26 +28,27 @@
 
 #login form,
 #register form,
-#car-register form{
+.car-form form{
     padding-bottom: 1.5em;
     margin-bottom: 1.5em;
     border-bottom: 1px solid;
 }
 
 #login p,
-#register p{
+#register p,
+.car-form p{
     text-align: center;
 }
 
 #login p a,
 #register p a,
-#car-register p a{
+.car-form p a{
     font-weight: bold;
 }
 
 #login form label,
 #register form label,
-#car-regiser form label{
+.car-form form label{
     display: flex;
     flex-direction: column;
 

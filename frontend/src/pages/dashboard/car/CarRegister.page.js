@@ -4,10 +4,10 @@ import { useState } from "react"
 // Redux
 
 // Uploads
-import { uploads } from "../../utils/config.utils";
+import { uploads } from "../../../utils/config.utils";
 
 // Components
-import SubmitButton from "../../components/SubmitButton.component";
+import SubmitButton from "../../../components/SubmitButton.component";
 
 // Styles
 
@@ -36,7 +36,7 @@ const CarRegister = () => {
     }
 
     return (
-        <div id='car-register'>
+        <div className='car-form'>
             <h2>Cadastre carro à venda</h2>
             <p className='subtitle'>
                 Preencha as informações requeridas abaixo

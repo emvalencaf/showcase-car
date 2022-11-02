@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 
 // Components
-import Message from '../../components/Message.component';
+import Message from '../../../components/Message.component';
 
 // Hooks
 import { useEffect, useState } from "react";
@@ -10,8 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 // Redux
-import { login, reset } from '../../slices/auth.slice';
-import SubmitButton from "../../components/SubmitButton.component";
+import { login, reset } from '../../../slices/auth.slice';
+import SubmitButton from "../../../components/SubmitButton.component";
 
 // Styles
 

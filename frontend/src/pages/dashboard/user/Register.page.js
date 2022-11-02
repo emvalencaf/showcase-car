@@ -2,15 +2,15 @@
 import { Link } from 'react-router-dom';
 
 // Hooks
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 // Components
-import SubmitButton from '../../components/SubmitButton.component';
-import { register } from '../../slices/auth.slice';
+import SubmitButton from '../../../components/SubmitButton.component';
+import { register, reset } from '../../../slices/auth.slice';
 
 // Styles
-import '../css/Dashboard.css';
+import '../../css/Dashboard.css';
 
 const Register = () => {
   
@@ -47,7 +47,16 @@ const Register = () => {
     dispatch(register(user));
 
 
-  }
+  };
+
+  // clean all auth states
+  useEffect(
+    () => {
+      dispatch(reset())
+    },
+    [dispatch]
+  )
+
   return (
     <div id='register'>
       <h2>Cadastro</h2>
