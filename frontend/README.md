@@ -23,4 +23,7 @@ Nesse projeto optou-se por usar o localStorage para salvar o jwt do usuário - q
 
 Uma outra opção seria o uso da sessionStorage.
 
-## 
+## Sobre as limitações do projeto
+
+- O projeto não se propôs apenas limitou-se a um mostruário;
+- O projeto não implementou restrições para cadastro de administradores;

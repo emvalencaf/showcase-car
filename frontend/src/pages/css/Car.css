@@ -1,0 +1,12 @@
+#car{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#car .car-card h1::first-letter{
+    text-transform: uppercase;
+}
+

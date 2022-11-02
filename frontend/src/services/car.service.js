@@ -21,8 +21,28 @@ const publishCar = async (data, token) => {
     };
 
 };
+    // Get car details by a id
+const getCarById = async (id) => {
 
-    // Get all cars
+    const config = requestConfig('GET');
+
+    try{
+
+        const res = await fetch(api + '/cars/' + id, config)
+            .then(res=> res.json())
+            .catch(err => err);
+
+        return res;
+
+    } catch(err){
+
+        console(err);
+    
+    };
+
+};
+
+    // Get all cars details
 const getAllCars = async () => {
 
     const config = requestConfig("GET");
@@ -45,7 +65,8 @@ const getAllCars = async () => {
 // carService
 const carService = {
     publishCar,
-    getAllCars
+    getAllCars,
+    getCarById
 
 };
 

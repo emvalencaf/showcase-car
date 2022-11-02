@@ -3,7 +3,7 @@
 import { uploads } from '../utils/config.utils';
 
 // Components
-
+import { Link, Navigate } from 'react-router-dom';
 // Hooks
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -38,8 +38,8 @@ const Home = () => {
         <div className='home'>
             <h1>Carros à venda</h1>
             <p className='subtitle'>Veja os carros que temos em nossa loja...</p>
-            {loadingCars && <p>Carregando os carros em nosso estoque</p>}
             <div className="display-cars">
+                {loadingCars && <p>Carregando os carros em nosso estoque</p>}
                 {(!loadingCars && cars) && cars.map(car => (
                     <>
                         <div
@@ -55,13 +55,15 @@ const Home = () => {
 
                             <ul>
                                 <li className='title'>{car.name}</li>
-                                <li>Marca: {car.brand}</li>
-                                <li>Modelo: {car.model}</li>
-                                <li className='price'>{(car.price).toLocaleString('pt-br',{style:'currency', currency:'BRL'})}</li>
+                                <li className='price'>{(car.price).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</li>
+                                <Link
+                                    to={`/${car._id}`}
+                                >Veja mais</Link>
                             </ul>
                         </div>
                     </>
                 ))}
+                {errorCars && <Navigate to='/notfound' />}
             </div>
         </div>
     );

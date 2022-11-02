@@ -47,7 +47,7 @@ const Navbar = () => {
                         <>
                             <li>
                                 <NavLink
-                                    to='/dashboad/cars/register'
+                                    to='/dashboard/cars/register'
                                 >Registrar Carro</NavLink>
                             </li>
                             <li>

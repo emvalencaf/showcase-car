@@ -1,3 +1,5 @@
+import React from 'react'
+
 // Hooks
 import { useState } from "react"
 
@@ -10,9 +12,9 @@ import { uploads } from "../../../utils/config.utils";
 import SubmitButton from "../../../components/SubmitButton.component";
 
 // Styles
+import '../../css/Dashboard.css';
 
-const CarRegister = () => {
-
+const RegisterCar = () => {
     const [name, setName] = useState("");
     const [brand, setBrand] = useState("");
     const [model, setModel] = useState("");
@@ -21,18 +23,18 @@ const CarRegister = () => {
     const [previewImage, setPreviewImage] = useState("");
 
     // Handles
-        // Submit
+    // Submit
     const handleSubmit = (e) => {
 
         e.preventDefault();
 
     };
-        // File
+    // File
     const handleFile = (e) => {
-    
+
         // image preview
         const file = e.target.files[0];
-    
+
     }
 
     return (
@@ -52,6 +54,7 @@ const CarRegister = () => {
                         type="text"
                         name='name'
                         value={name}
+                        placeholder='nome do carro'
                         onChange={(e) => setName(e.target.value)}
                     />
                 </label>
@@ -60,6 +63,7 @@ const CarRegister = () => {
                     <input
                         type="text"
                         name='brand'
+                        placeholder='marca do carro'
                         value={brand}
                         onChange={(e) => setBrand(e.target.value)}
                     />
@@ -69,6 +73,7 @@ const CarRegister = () => {
                     <input
                         type="text"
                         name='model'
+                        placeholder='modelo do carro'
                         value={model}
                         onChange={(e) => setModel(e.target.value)}
                     />
@@ -78,6 +83,7 @@ const CarRegister = () => {
                     <input
                         type="number"
                         name='price'
+                        placeholder='preço do carro em reais'
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                     />
@@ -91,11 +97,11 @@ const CarRegister = () => {
                     />
                 </label>
                 {<SubmitButton
-                    
+                    btnValue='Cadastrar Carro'
                 />}
             </form>
         </div>
-    )
+    );
 }
 
-export default CarRegister
+export default RegisterCar;

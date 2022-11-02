@@ -29,7 +29,22 @@ export const publishCar = createAsyncThunk(
 
     }
 );
-    // Get all cars
+
+    // Get a car details by id
+export const getCarById = createAsyncThunk(
+    "car/car",
+    async (id, thunkAPI) => {
+
+        const data = await carService.getCarById(id);
+
+        // Check for errors
+        if(data.errors) return thunkAPI.rejectWithValue(data.errors[0]);
+
+        return data;
+    }
+);
+
+    // Get all cars details
 export const getAllCars = createAsyncThunk(
     "car/cars",
     async (cars, thunkAPI) => {
@@ -86,6 +101,21 @@ export const carSlice = createSlice({
                     state.success = true;
                     state.error = null;
                     state.cars = action.payload;
+                })
+                .addCase(getAllCars.rejected, (state, action) =>{
+                    state.loading = false;
+                    state.error = action.payload;
+                    state.cars = {};
+                })
+                .addCase(getCarById.pending, (state) => {
+                    state.loading = true;
+                    state.error = false;
+                })
+                .addCase(getCarById.fulfilled, (state, action) => {
+                    state.loading = false;
+                    state.success = true;
+                    state.error = null;
+                    state.car = action.payload;
                 })
     }
 

@@ -12,8 +12,10 @@ import Footer from './components/footer/Footer.component';
 import Home from './pages/Home.page';
 import Login from './pages/dashboard/user/Login.page';
 import Register from './pages/dashboard/user/Register.page';
-import CarRegister from './pages/dashboard/car/CarRegister.page';
-import CarEdit from './pages/dashboard/car/CarEdit.page';
+import RegisterCar from './pages/dashboard/car/RegisterCar.page';
+import Car from './pages/Car.page';
+import Notfound from './pages/NotFound.page';
+
 
 // Styles
 import './App.css';
@@ -22,9 +24,9 @@ function App() {
 
   const { auth, loading } = useAuth();
 
-  console.log(loading);
+  console.log(auth);
 
-  if(loading) return <p>Carregando...</p>
+  if (loading) return <p>Carregando...</p>
 
   return (
     <div className="App">
@@ -37,20 +39,36 @@ function App() {
               element={<Home />}
             />
             <Route
-              path='/dashboard/cars/register'
-              element={auth? <CarRegister />:<Navigate to='/dashboard/login'/>}
+              path='/:id'
+              element={<Car />}
             />
             <Route
-              path='/dashboard/cars/edit'
-              element={auth? <CarEdit />:<Navigate to='/dashboard/login' />}
+              path='/dashboard/cars/register'
+              element={
+                auth ?
+                  <RegisterCar />
+                  : <Navigate to='/dashboard/login' />
+              }
             />
             <Route
               path='/dashboard/login'
-              element={<Login />}
+              element={
+                !auth ?
+                  <Login />
+                  : <Navigate to='/' />
+              }
             />
             <Route
               path='/dashboard/register'
-              element={<Register />}
+              element={
+                !auth ?
+                  <Register />
+                  : <Navigate to="/" />
+              }
+            />
+            <Route
+              path={'/notfound'}
+              element={<Notfound />}
             />
           </Routes>
         </main>
