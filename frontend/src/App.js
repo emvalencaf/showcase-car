@@ -1,22 +1,30 @@
 //react
-  //react router
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+//react router
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
-//components
+// Hooks
+import { useAuth } from './hooks/useAuth.hook';
+// Components
 import Header from './components/header/Header.component';
-import Footer from './components/footer/Footer';
+import Footer from './components/footer/Footer.component';
 
-//pages
+// Pages
 import Home from './pages/Home.page';
-import About from './pages/About.page';
-import Login from './pages/Login.page';
-import Register from './pages/Register.page';
+import Login from './pages/dashboard/Login.page';
+import Register from './pages/dashboard/Register.page';
+import CarRegister from './pages/dashboard/CarRegister.page';
 
-//styles
+// Styles
 import './App.css';
-import Cars from './pages/Cars.page';
 
 function App() {
+
+  const { auth, loading } = useAuth();
+
+  console.log(loading);
+
+  if(loading) return <p>Carregando...</p>
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -28,20 +36,16 @@ function App() {
               element={<Home />}
             />
             <Route
-              path='/about'
-              element={<About />}
+              path='/dashboard/cars/register'
+              element={auth? <CarRegister />:<Navigate to='/dashboard/login'/>}
             />
             <Route
-              path='/login'
+              path='/dashboard/login'
               element={<Login />}
             />
             <Route
-              path='/register'
+              path='/dashboard/register'
               element={<Register />}
-            />
-            <Route
-              path='/cars'
-              element={<Cars />}
             />
           </Routes>
         </main>

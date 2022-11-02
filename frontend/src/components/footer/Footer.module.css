@@ -4,6 +4,12 @@
     justify-content: space-between;
 
     text-align: center;
+
+    height: 200px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #000;
 }
 
 .links_list{
@@ -16,5 +22,9 @@
 
 .links_list li{
     font-size: 1.5em;
+}
 
+.links_list li:hover{
+    color: #4b494975;
+    transform: scale(1.1);
 }

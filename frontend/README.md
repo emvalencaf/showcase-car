@@ -1,6 +1,6 @@
 # Front-end do projeto showcase-car
 
-O front-end desse projeto foi desenvolvido em javascript usando o framework ReactJS.
+O front-end desse projeto foi desenvolvido em javascript usando o framework ReactJS. Apesar de ter responsividade, esse projeto foi desenvovido primariamente para desktop.
 
 ## Sobre o Projeto
 

@@ -1,7 +1,7 @@
 //react
     //react-icons
 import {FaGithub, FaLinkedin, FaCode} from 'react-icons/fa'
-import Navbar from '../header/navbar/Navbar.component';
+import Navbar from '../header/Navbar.component';
 
 //styles
 import styles from './Footer.module.css';
@@ -9,7 +9,6 @@ import styles from './Footer.module.css';
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-        <Navbar />
         <span>&copy; 2022, criado por Edson Mota Valença Filho</span>
         <ul className={styles.links_list}>
             <a href="https://www.github.com/emvalencaf">
@@ -29,7 +28,7 @@ const Footer = () => {
             </a>
         </ul>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

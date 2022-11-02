@@ -1,33 +1,105 @@
-*{
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-}
-
 body{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  
   font-family: 'Courier New', Courier, monospace;
 }
 
-a,
-nav button{
+a {
+
+  color: #4b4949;
   text-decoration: none;
-
-  background-color: transparent;
-  color: #000;
-
-  border: none;
-  transition: .4s;
-
-  cursor: pointer;
+  transition: .6s;
 }
 
 
-a:hover,
-nav button:hover{
-  color: #BBB;
+ul{
+  list-style: none;
+}
 
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+label{
+  display: flex;
+  flex-direction: column;
+
+  text-align: left;
+}
+
+label span{
+  font-weight: bold;
+
+  margin-bottom: .5em;
+
+  color: #AAA;
+
+  font-size: .7em;
+}
+
+input{
+  color: #AAA;
+
+  border: 1px solid #555;
+  border-radius: 15px;
+
+  padding: 10px 8px;
+
+  outline: none;
+
+  margin-bottom: .6em;
+}
+
+input::placeholder{
+  color: #aaaa;
+}
+
+.btn,
+button,
+input[type="submit"]{
+  background-color: #212c34;
+  color: #FFF;
+
+  border: none;
+  border-radius: 4px;
+
+  padding: 10px 8px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  opacity: .8;
+
+  font-size: 1em;
+}
+
+button[type="submit"],
+input[type="submit"]{
+  margin-top: 1em;
+}
+
+input:disabled,
+button:disabled{
+  cursor: not-allowed;
+  background-color: #000;
+}
+
+button:hover,
+input[type="submit"]{
+  opacity: 1;
+}
+
+.cancel-btn{
+  background-color: #ccc;
+}
+
+.hide{
+  display: none;
 }

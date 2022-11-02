@@ -1,5 +1,5 @@
 //components
-import Navbar from "./navbar/Navbar.component"
+import Navbar from "./Navbar.component"
 
 //styles
 import styles from './Header.module.css';
