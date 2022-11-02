@@ -19,8 +19,6 @@ app.use(cors({
     origin:'http://localhost:3000'
 }));
 
-    // Upload directory
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')));// in this directory will be saved the photos of our project
 
 console.log(__dirname);
 
