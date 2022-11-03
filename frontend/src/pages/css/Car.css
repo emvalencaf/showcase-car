@@ -5,6 +5,7 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 150px;
+    margin: 20px auto;
 }
 
 #car .car-card h1::first-letter{
