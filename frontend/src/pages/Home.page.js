@@ -1,5 +1,5 @@
 // icons
-import { FaTrash, FaPen, FaGlassMartini, FaHourglassHalf } from 'react-icons/fa';
+import { FaTrash, FaPen } from 'react-icons/fa';
 
 // Uploads
 import { uploads } from '../utils/config.utils';
@@ -7,7 +7,7 @@ import { uploads } from '../utils/config.utils';
 // Components
 import { Link, Navigate } from 'react-router-dom';
 // Hooks
-import { useState, useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Hooks
@@ -80,7 +80,7 @@ const Home = () => {
                         </div>
                     </>
                 )}
-                {(!loadingCars && cars && cars instanceof Array) && cars.map(car => (
+                {(!loadingCars && cars) && cars.map(car => (
                     <>
                         <div
                             className="car-card"
@@ -123,7 +123,6 @@ const Home = () => {
                         </div>
                     </>
                 ))}
-                {errorCars && <Navigate to='/notfound' />}
             </div>
         </div>
     );

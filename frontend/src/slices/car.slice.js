@@ -6,7 +6,7 @@ const initialState = {
     cars: [],
     car: {},
     error: false,
-    succes: false,
+    success: false,
     loading: false,
     message: null
 };
@@ -47,13 +47,13 @@ export const getCarById = createAsyncThunk(
     // Get all cars details
 export const getAllCars = createAsyncThunk(
     "car/cars",
-    async (cars, thunkAPI) => {
+    async (cars = null , thunkAPI) => {
 
         const data = await carService.getAllCars();
 
-        if(!data[0]._id) data[0].errors = ['Carros não encontrados'];
-
         // Check for errors
+        if(data instanceof TypeError) return thunkAPI.rejectWithValue('Houve um erro em nossos servidores, por favor, volte mais tarde!');
+
         if(data.errors) return thunkAPI.rejectWithValue(data.errors[0]);
 
         return data;
@@ -66,13 +66,10 @@ export const updateCar = createAsyncThunk(
     'car/update',
     async ({car, _id}, thunkAPI) => {
 
-        console.log('dentro do slice do update car')
         const token = thunkAPI.getState().auth.user.token;
-        console.log('depois do token')
 
         const data = await carService.updateCar(car, _id, token)
         
-        console.log('resposta dentro do slice', data);
 
         // Check for errors
         if(data.errors) return thunkAPI.rejectWithValue(data.errors[0]);
@@ -87,12 +84,6 @@ export const deleteCar = createAsyncThunk(
     async(id, thunkAPI) =>{
 
         const token = thunkAPI.getState().auth.user.token;
-
-        console.log("delete car")
-
-        console.log(token);
-
-        console.log(id);
 
         const data = await carService.deleteCar(id, token);
 
@@ -112,7 +103,12 @@ export const carSlice = createSlice({
     name: "car",
     initialState,
     reducers:{
-        resetMessage: (state) => {state.message = null}
+        resetMessage: (state) => {state.message = null},
+        resetStates: (state) => {
+            state.error = false;
+            state.success = false;
+            state.loading = false;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -125,8 +121,8 @@ export const carSlice = createSlice({
                     state.loading = false;
                     state.success = true;
                     state.error = null;
-                    state.car = action.payload;
-                    state.cars.push(state.car);
+                    // state.car = action.payload;
+                    // state.cars.push(state.car);
                     state.message = "Carro posto à venda com sucesso!"
                 })
                 .addCase(publishCar.rejected, (state, action) =>{
@@ -147,7 +143,7 @@ export const carSlice = createSlice({
                 .addCase(getAllCars.rejected, (state, action) =>{
                     state.loading = false;
                     state.error = action.payload;
-                    state.cars = {};
+                    state.cars = [];
                 })
                 .addCase(getCarById.pending, (state) => {
                     state.loading = true;
@@ -183,8 +179,8 @@ export const carSlice = createSlice({
                     state.loading = false;
                     state.success = true;
                     state.error = null;
-                    state.car = action.payload;
-                    state.cars.push(state.car);
+                    // state.car = action.payload;
+                    // state.cars.push(state.car);
                     state.message = "Carro atualizado com sucesso!"
                 })
                 .addCase(updateCar.rejected, (state, action) =>{
@@ -196,5 +192,5 @@ export const carSlice = createSlice({
 
 });
 
-export const { resetMessage } = carSlice.actions;
+export const { resetMessage, resetStates } = carSlice.actions;
 export default carSlice.reducer;

@@ -11,9 +11,12 @@ const publishCar = async (data, token) => {
 
     try{
 
-        const res = await fetch(api + '/cars/register', config)
-            .then(res => res.json())
-            .catch(err => err);
+        //const res = await fetch(api + '/cars/register', config)
+        //    .then(res => res.json())
+        //    .catch(err => err);
+        const res = await createFetch(
+            api + '/cars/register', config
+        );
 
         return res;
 
@@ -29,9 +32,13 @@ const getCarById = async (id) => {
 
     try{
 
-        const res = await fetch(api + '/cars/' + id, config)
-            .then(res=> res.json())
-            .catch(err => err);
+        //const res = await fetch(api + '/cars/' + id, config)
+        //    .then(res=> res.json())
+        //    .catch(err => err);
+        const res = await createFetch(
+            api + '/cars/' + id,
+            config
+        );
 
         return res;
 
@@ -50,10 +57,12 @@ const getAllCars = async () => {
 
     try{
 
-        const res = await fetch(api + '/cars')
-            .then(res => res.json())
-            .catch(err => err);
-
+        //const res = await fetch(api + '/cars')
+        //    .then(res => res.json())
+        //    .catch(err => err);
+        const res = await createFetch(
+            api + '/cars', config
+        );
 
         return res;
 
@@ -69,14 +78,16 @@ const updateCar = async (data, id, token) => {
 
     const config = requestConfig('PUT', data, token, true);
 
-    console.log('requisição dentro do carService: ', config.body);
-
     try{
 
-        const res = await fetch(api + '/cars/' + id, config)
-            .then(res => res.json())
-            .catch(err => err);
-        
+        //const res = await fetch(api + '/cars/' + id, config)
+        //    .then(res => res.json())
+        //    .catch(err => err);
+        const res = await createFetch(
+            api + '/cars/' + id,
+            config
+        );
+
         return res;
 
     } catch(err){
@@ -91,9 +102,13 @@ const deleteCar = async (id, token) => {
 
     try {
         
-        const res = await fetch(api + '/cars/' + id, config)
-            .then(res => res.json())
-            .catch(err => err);
+        //const res = await fetch(api + '/cars/' + id, config)
+        //    .then(res => res.json())
+        //    .catch(err => err);
+        const res = await createFetch(
+            api + '/cars/' + id,
+            config
+        );
 
         return res;
 

@@ -96,7 +96,7 @@ const updateUser = async (req, res) => {
 
     const user = await repository.updateUser(reqUser, newData);
 
-    if(!user) res.status(404).json({errors:['Usuário não encontrado']});
+    if(!user) return res.status(404).json({errors:['Usuário não encontrado']});
 
     return res.status(200).json(user);
 };

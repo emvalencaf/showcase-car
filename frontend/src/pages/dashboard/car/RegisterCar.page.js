@@ -1,12 +1,13 @@
 // Hooks
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
-import { publishCar, resetMessage } from '../../../slices/car.slice';
+import { publishCar, resetMessage, resetStates } from '../../../slices/car.slice';
 
 // Components
 import SubmitButton from "../../../components/SubmitButton.component";
+import { Link } from "react-router-dom";
 
 import PreviewImage from '../../../components/PreviewsImage.component';
 
@@ -27,8 +28,9 @@ const RegisterCar = () => {
     const [previewImage, setPreviewImage] = useState("");
 
     const {
-        error,
-        loading
+        error: errorCar,
+        loading: loadingCar,
+        message: sucessMsg
     } = useSelector((state) => state.car);
     
     // Handles
@@ -60,6 +62,9 @@ const RegisterCar = () => {
         setImage('');
         setPrice('');
 
+        setPreviewImage('');
+        // inputFile.current.value = '';
+
         setTimeout(() =>{
             dispatch(resetMessage());
         }, 2000);
@@ -77,6 +82,15 @@ const RegisterCar = () => {
 
     }
 
+    // resetar cars states
+    useEffect(
+        () => {
+            dispatch(resetMessage());
+            dispatch(resetStates());
+        },
+        [dispatch]
+    );
+
     return (
         <div className='car-form'>
             <h2>Cadastre carro à venda</h2>
@@ -84,7 +98,7 @@ const RegisterCar = () => {
                 Preencha as informações requeridas abaixo
             </p>
             {/* preview da imagem */}
-            {< PreviewImage
+            { < PreviewImage
                 image={image}
                 previewImage={previewImage}
             />}
@@ -146,11 +160,13 @@ const RegisterCar = () => {
                     />
                 </label>
                 {<SubmitButton
-                    loading={loading}
-                    error={error}
+                    loading={loadingCar}
+                    error={errorCar}
+                    success={sucessMsg}
                     btnValue='Cadastrar Carro'
                 />}
             </form>
+            <p>Deseja voltar a vitrine? <Link to='/'>Clique aqui</Link></p>
         </div>
     );
 }

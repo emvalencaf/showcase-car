@@ -1,5 +1,6 @@
 // modules
 import { api, requestConfig } from '../utils/config.utils';
+import { createFetch } from '../utils/createFetch.utils';
 
 
 
@@ -12,9 +13,14 @@ const register = async (data) => {
 
     try{
 
-        const res = await fetch(api + '/users/register', config)
-            .then(res => res.json())
-            .catch(err => err);
+        //const res = await fetch(api + '/users/register', config)
+        //    .then(res => res.json())
+        //    .catch(err => err);
+        const res = await createFetch(
+            api + '/users/register',
+            config
+        );
+
 
         if(res._id){
 
@@ -48,9 +54,13 @@ const login = async (data) => {
 
     try{
 
-        const res = await fetch(api + '/users/login', config)
-            .then(res => res.json())
-            .catch(err => err);
+        //const res = await fetch(api + '/users/login', config)
+        //    .then(res => res.json())
+        //    .catch(err => err);
+        const res = await createFetch(
+            api + '/users/login',
+            config
+        );
 
         if(res._id) localStorage.setItem("user", JSON.stringify(res));
 

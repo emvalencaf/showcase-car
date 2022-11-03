@@ -4,7 +4,7 @@ import { uploads } from "../utils/config.utils"
 // Styles
 import './PreviewImage.css';
 
-const PreviewImage = ({ previewImage, image }) => {
+const PreviewImage = ({ previewImage, image  }) => {
     return (
         <picture className="preview-image">
             {(previewImage || image) && (

@@ -1,13 +1,14 @@
 // Hooks
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 // Redux
 import {
     getCarById,
     resetMessage,
-    updateCar
+    updateCar,
+    resetStates
 } from '../../../slices/car.slice';
 
 
@@ -36,7 +37,12 @@ const EditCar = () => {
 
     const dispatch = useDispatch();
 
-    const { car, loading: loadingCar, error: errorCar } = useSelector((state) => state.car);
+    const { 
+        car,
+        loading: loadingCar,
+        error: errorCar,
+        message: successMsg
+    } = useSelector((state) => state.car);
 
     // Loading car details
     useEffect(
@@ -74,6 +80,10 @@ const EditCar = () => {
         };
 
         await dispatch(updateCar(data, id));
+
+        setTimeout(() =>{
+            dispatch(resetMessage());
+        }, 2000);
     };
     // File
     const handleFile = (e) => {
@@ -88,6 +98,15 @@ const EditCar = () => {
 
     }
 
+    
+    // resetar cars states
+    useEffect(
+        () => {
+            dispatch(resetMessage());
+            dispatch(resetStates());
+        },
+        [dispatch]
+    );
 
     return (
         <div className='car-form'>
@@ -157,6 +176,7 @@ const EditCar = () => {
                         {<SubmitButton
                             loading={loadingCar}
                             error={errorCar}
+                            success={successMsg}
                             btnValue='Editar'
                         />}
                     </form>

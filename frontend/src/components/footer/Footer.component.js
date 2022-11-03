@@ -11,7 +11,7 @@ const Footer = () => {
     <footer className={styles.footer}>
         <span>&copy; 2022, criado por Edson Mota Valença Filho</span>
         <ul className={styles.links_list}>
-            <a href="https://www.github.com/emvalencaf">
+            <a href="https://www.github.com/emvalencaf" target='blank'>
                 <abbr title="meu GitHub">
                     <li><FaGithub /></li>
                 </abbr>
@@ -21,7 +21,7 @@ const Footer = () => {
                     <li><FaLinkedin /></li>
                 </abbr>
             </a>
-            <a href="">
+            <a href="https://emvalenca-portfolio.herokuapp.com/" target='blank'>
                 <abbr title="Meu portfólio">
                     <li><FaCode /></li>
                 </abbr>

@@ -8,8 +8,6 @@ export const requestConfig = (method, data, token = null, image = null) => {
 
     let config
 
-    console.log(data);
-
     if(image){
         // for data in formData
         config = {
@@ -36,8 +34,6 @@ export const requestConfig = (method, data, token = null, image = null) => {
         };
 
     };
-    
-    console.log(config.body);
 
     if(token) config.headers.Authorization = `Bearer ${token}`;
 

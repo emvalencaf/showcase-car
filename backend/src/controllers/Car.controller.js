@@ -64,9 +64,10 @@ const getAllCars = async (req, res) => {
 
     const cars = await repository.getAllCars();
 
-    if(!cars) res.status(404).json({errors:"Não foi possível encontrar nenhum carro."});
+    if(!cars || cars.length === 0) return res.status(404).json({errors:"Não foi possível encontrar nenhum carro."});
 
-    res.status(200).json(cars);
+
+    return res.status(200).json(cars);
 };
 
 
