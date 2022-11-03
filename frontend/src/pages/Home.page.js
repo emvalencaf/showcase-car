@@ -96,10 +96,13 @@ const Home = () => {
                             <ul>
                                 <li className='title'>{car.name}</li>
                                 <li className='price'>{(car.price).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</li>
-                                <Link
-                                    className='btn'
-                                    to={`/${car._id}`}
-                                >Veja mais</Link>
+                                <li>
+
+                                    <Link
+                                        className='btn'
+                                        to={`/${car._id}`}
+                                    >Veja mais</Link>
+                                </li>
                             </ul>
                             {auth && (
                                 <>

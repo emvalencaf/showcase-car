@@ -15,7 +15,15 @@
 
     max-width: 100%;
     gap: 20px;
+
+    padding: 50px;
 } 
+
+.home .display-cars .car-card{
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 16px 5px rgba(0, 0, 0, 0.247);
+}
 
 .car-card{
     display: flex;
@@ -46,7 +54,20 @@
 
 }
 
+.car-card ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    
+}
+
 .car-card ul li::first-letter{
     text-transform: uppercase;
 }
 
+.car-card ul li a{
+    text-transform: uppercase;
+}
