@@ -51,6 +51,8 @@ export const getAllCars = createAsyncThunk(
 
         const data = await carService.getAllCars();
 
+        if(!data[0]._id) data[0].errors = ['Carros não encontrados'];
+
         // Check for errors
         if(data.errors) return thunkAPI.rejectWithValue(data.errors[0]);
 

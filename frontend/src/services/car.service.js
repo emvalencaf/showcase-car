@@ -1,5 +1,6 @@
 // Modules
 import { api, requestConfig } from '../utils/config.utils';
+import { createFetch } from '../utils/createFetch.utils';
 
 
 // functions
@@ -52,6 +53,7 @@ const getAllCars = async () => {
         const res = await fetch(api + '/cars')
             .then(res => res.json())
             .catch(err => err);
+
 
         return res;
 

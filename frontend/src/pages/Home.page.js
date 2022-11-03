@@ -80,7 +80,7 @@ const Home = () => {
                         </div>
                     </>
                 )}
-                {(!loadingCars && cars) && cars.map(car => (
+                {(!loadingCars && cars && cars instanceof Array) && cars.map(car => (
                     <>
                         <div
                             className="car-card"
