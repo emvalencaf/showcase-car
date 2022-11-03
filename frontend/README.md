@@ -56,3 +56,17 @@ Portanto, o projeto está limitado à apenas um mero uso funcional da autentica�
 ### Rotas privadas não consumidas
 
 As rotas de usuário para atualizar o usuário não foi introduzida ao front-end. Apesar dela ter sido programada no backend.
+
+## Como usar
+
+1. Leia o README do diretório do backend para configurar o backend da aplicação;
+2. Configure as URL do diretório upload para renderizar as imagens salvas no servidor e a URL da API, esses dados devem ser colocados no diretório ``src > utils > config.utils.js``, por exemplo:
+```
+// API's url
+export const api = 'http://localhost:5000/api';// insert here the API's url
+export const uploads = 'http://localhost:5000/uploads';// url for our local image storage
+
+```
+3. Abra o terminal na pasta frontend e digite o comando ``npm install`` para instalar todos os pacotes de dependência necessários para rodar o projeto;
+4. Abra outro terminal na pasta do backend e digite o comando ``npm run dev`` (para o ambiente de desenvolvimento), ou ``npm start``(para o ambiente de desenvolvimento - lembrando que deverá ser passada as variáveis de ambiente), para rodar o backend;
+5. No terminal da pasta frontend, digite o comando ```npm start`` para rodar o frontend do projeto.
