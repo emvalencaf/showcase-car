@@ -62,17 +62,20 @@ export const getAllCars = createAsyncThunk(
     // Update a car
 export const updateCar = createAsyncThunk(
     'car/update',
-    async (data, id, thunkAPI) => {
+    async ({car, _id}, thunkAPI) => {
 
-
+        console.log('dentro do slice do update car')
         const token = thunkAPI.getState().auth.user.token;
+        console.log('depois do token')
 
-        const newData = await carService(data, id, token)
+        const data = await carService.updateCar(car, _id, token)
         
-        // Check for errors
-        if(newData.errors) return thunkAPI.rejectWithValue(newData.errors[0]);
+        console.log('resposta dentro do slice', data);
 
-        return newData;
+        // Check for errors
+        if(data.errors) return thunkAPI.rejectWithValue(data.errors[0]);
+
+        return data;
     }
 );
 

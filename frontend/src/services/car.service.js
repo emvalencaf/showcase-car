@@ -67,12 +67,14 @@ const updateCar = async (data, id, token) => {
 
     const config = requestConfig('PUT', data, token, true);
 
+    console.log('requisição dentro do carService: ', config.body);
+
     try{
 
         const res = await fetch(api + '/cars/' + id, config)
             .then(res => res.json())
             .catch(err => err);
-
+        
         return res;
 
     } catch(err){

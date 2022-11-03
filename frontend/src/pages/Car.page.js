@@ -27,7 +27,7 @@ const Car = () => {
     useEffect(
         () => {
             dispatch(getCarById(id));
-        }, [dispatch, id]);
+        }, [dispatch]);
 
 
     return (

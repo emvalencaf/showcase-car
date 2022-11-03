@@ -1,7 +1,7 @@
 // Hooks
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 
 // Redux
 import {
@@ -42,7 +42,7 @@ const EditCar = () => {
     useEffect(
         () => {
             dispatch(getCarById(id));
-        }, [dispatch, id]);
+        }, [dispatch]);
 
     
     // Fill car form
@@ -60,34 +60,20 @@ const EditCar = () => {
 
     const handleSubmit = async (e) => {
 
+
         e.preventDefault();
-
-        const carData = {
-            name,
-            brand,
-            price,
-            model,
-            image
-        }
-
-
-        console.log(carData);
 
         // Build formdata
         const formData = new FormData(e.currentTarget);
 
+        console.log('formData dentro do handleSubmit', formData.get("model"));
+        
+        const data = {
+            car: formData,
+            _id: car._id
+        };
 
-        await dispatch(updateCar(formData, id));
-
-        setName("");
-        setBrand('');
-        setModel('');
-        setImage('');
-        setPrice('');
-
-        setTimeout(() =>{
-            dispatch(resetMessage());
-        }, 2000);
+        await dispatch(updateCar(data, id));
     };
     // File
     const handleFile = (e) => {
@@ -174,6 +160,7 @@ const EditCar = () => {
                             btnValue='Editar'
                         />}
                     </form>
+                    <p>Deseja voltar a vitrine? <Link to='/'>Clique aqui</Link></p>
                 </>
             )}
         </div>

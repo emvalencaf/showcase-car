@@ -52,7 +52,7 @@ const updateCar = async (req, res) => {
     console.log(newData);
 
     // Check if there is an image
-    // if(!image && !newData.image) return res.status(422).json({errors:['Registro não pode ficar sem foto']});
+    //if(!image && !newData.image) return res.status(422).json({errors:['Registro não pode ficar sem foto']});
 
     await repository.updateCar(car, newData);
 
