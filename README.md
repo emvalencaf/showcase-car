@@ -1,8 +1,8 @@
 # showcase-car
 
-[Em desenvolvimento] Projeto desenvolvido para a avaliação dos conhecimentos técnicos em desenvolvimento front-end e lógica de programação para o cargo fullstack JS da Verzel.
+Projeto desenvolvido para a avaliação dos conhecimentos técnicos em desenvolvimento front-end e lógica de programação para o cargo fullstack JS da Verzel.
 
-A proposta do teste é o desenvolvimento de um catálogo de veículos à venda.
+A proposta do teste é o desenvolvimento de um catálogo de veículos à venda em uma aplicação fullstack em que o frontend (desenvolvido em reactjs) consume API RESTFULL do backend (que estará conectado a um banco de dados MongoDB).
 
 ## Sobre
 
@@ -10,7 +10,7 @@ O projeto foi dividido em dois: frontend e backend; cada um dos projetos possui 
 
 ### Sobre as limitações do projeto
 
-- O projeto não se limitou-se a um mostruário, deixando pronto fundamentos para prosseguir no desenvolvimento para um e-commerce;
+- O projeto se limitou-se a um mostruário dos veículos, deixando pronto os fundamentos para prosseguir no desenvolvimento para um e-commerce;
 - O projeto não implementou restrições para cadastro de administradores, tampouco desenvolveu uma dashboard para a administração mais completa. Embora tenha deixado bases para o desenvolvimento;
 
 ### Como usar
