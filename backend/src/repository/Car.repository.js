@@ -1,5 +1,7 @@
 // Modules
 const mongoose = require('mongoose');
+const fs = require('fs');
+const path = require('path');
 const Car = require('../models/Car.model');
 
 // Create a car register
@@ -24,6 +26,12 @@ const findById = async (id) => {
 
 const updateCar = async (dataCar, newData) => {
 
+    for(prop in dataCar){
+        if(newData[prop]) dataCar[prop] = newData[prop];
+    };
+
+    return await dataCar.save();
+
 
 };
 
@@ -47,5 +55,6 @@ module.exports = {
     registerCar,
     findById,
     getAllCars,
-    deleteCarById
+    deleteCarById,
+    updateCar
 };

@@ -22,8 +22,3 @@ Recomenda-se rever o arquivo app.js do backend, em específico o cors.
 Nesse projeto optou-se por usar o localStorage para salvar o jwt do usuário - que tem 7 dias para expirar (para rever isso, vá ao backend e reveja a função generateToken no arquivo generateToken.auth.js no diretório auth).
 
 Uma outra opção seria o uso da sessionStorage.
-
-## Sobre as limitações do projeto
-
-- O projeto não se propôs apenas limitou-se a um mostruário;
-- O projeto não implementou restrições para cadastro de administradores;

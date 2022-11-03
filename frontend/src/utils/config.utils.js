@@ -8,8 +8,10 @@ export const requestConfig = (method, data, token = null, image = null) => {
 
     let config
 
-    if(image){
+    console.log(data);
 
+    if(image){
+        // for data in formData
         config = {
             method,
             body: data,
@@ -32,7 +34,10 @@ export const requestConfig = (method, data, token = null, image = null) => {
                 "Content-Type":"application/json"
             }
         };
+
     };
+    
+    console.log(config.body);
 
     if(token) config.headers.Authorization = `Bearer ${token}`;
 

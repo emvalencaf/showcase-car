@@ -39,6 +39,7 @@ router.get('/:id',
 
 router.put('/:id',
     authGuard,
+    imageUpload.single('image'),
     controller.updateCar
 );
 

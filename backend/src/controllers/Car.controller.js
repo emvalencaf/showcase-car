@@ -31,8 +31,10 @@ const updateCar = async (req, res) => {
 
     const { id } = req.params;
 
+    console.log('entrou ao updateCar backend')
+
     // New data
-    const { name, brand, model, price } = req.body;
+    const { name, brand, model, price, image } = req.body;
 
     const car = await repository.findById(id);
 
@@ -46,6 +48,11 @@ const updateCar = async (req, res) => {
     }
 
     if(req.file) newData.image = req.file.filename
+
+    console.log(newData);
+
+    // Check if there is an image
+    // if(!image && !newData.image) return res.status(422).json({errors:['Registro não pode ficar sem foto']});
 
     await repository.updateCar(car, newData);
 

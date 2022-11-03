@@ -19,6 +19,7 @@ import Notfound from './pages/NotFound.page';
 
 // Styles
 import './App.css';
+import EditCar from './pages/dashboard/car/EditCar.page';
 
 function App() {
 
@@ -47,6 +48,14 @@ function App() {
               element={
                 auth ?
                   <RegisterCar />
+                  : <Navigate to='/dashboard/login' />
+              }
+            />
+            <Route
+              path='/dashboard/cars/edit/:id'
+              element={
+                auth?
+                  <EditCar />
                   : <Navigate to='/dashboard/login' />
               }
             />

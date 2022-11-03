@@ -1,39 +1,79 @@
-import React from 'react'
-
 // Hooks
-import { useState } from "react"
+import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
-
-// Uploads
-import { uploads } from "../../../utils/config.utils";
+import { publishCar, resetMessage } from '../../../slices/car.slice';
 
 // Components
 import SubmitButton from "../../../components/SubmitButton.component";
+
+import PreviewImage from '../../../components/PreviewsImage.component';
 
 // Styles
 import '../../css/Dashboard.css';
 
 const RegisterCar = () => {
+
+    const dispatch = useDispatch();
+
+    
+    // States
     const [name, setName] = useState("");
     const [brand, setBrand] = useState("");
     const [model, setModel] = useState("");
     const [price, setPrice] = useState("");
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState('');
     const [previewImage, setPreviewImage] = useState("");
 
+    const {
+        error,
+        loading
+    } = useSelector((state) => state.car);
+    
     // Handles
     // Submit
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
 
         e.preventDefault();
 
+        const carData = {
+            name,
+            brand,
+            price,
+            model,
+            image
+        }
+
+
+        console.log(carData);
+
+        // Build formdata
+        const formData = new FormData(e.currentTarget);
+
+
+        await dispatch(publishCar(formData));
+
+        setName("");
+        setBrand('');
+        setModel('');
+        setImage('');
+        setPrice('');
+
+        setTimeout(() =>{
+            dispatch(resetMessage());
+        }, 2000);
     };
     // File
     const handleFile = (e) => {
 
         // image preview
         const file = e.target.files[0];
+
+        setPreviewImage(file);
+
+        // Update image state
+        setImage(file);
 
     }
 
@@ -44,6 +84,10 @@ const RegisterCar = () => {
                 Preencha as informações requeridas abaixo
             </p>
             {/* preview da imagem */}
+            {< PreviewImage
+                image={image}
+                previewImage={previewImage}
+            />}
             {/* form */}
             <form
                 onSubmit={handleSubmit}
@@ -56,6 +100,7 @@ const RegisterCar = () => {
                         value={name}
                         placeholder='nome do carro'
                         onChange={(e) => setName(e.target.value)}
+                        required
                     />
                 </label>
                 <label>
@@ -66,6 +111,7 @@ const RegisterCar = () => {
                         placeholder='marca do carro'
                         value={brand}
                         onChange={(e) => setBrand(e.target.value)}
+                        required
                     />
                 </label>
                 <label>
@@ -76,6 +122,7 @@ const RegisterCar = () => {
                         placeholder='modelo do carro'
                         value={model}
                         onChange={(e) => setModel(e.target.value)}
+                        required
                     />
                 </label>
                 <label>
@@ -86,6 +133,7 @@ const RegisterCar = () => {
                         placeholder='preço do carro em reais'
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
+                        required
                     />
                 </label>
                 <label>
@@ -94,9 +142,12 @@ const RegisterCar = () => {
                         type="file"
                         name='image'
                         onChange={handleFile}
+                        required
                     />
                 </label>
                 {<SubmitButton
+                    loading={loading}
+                    error={error}
                     btnValue='Cadastrar Carro'
                 />}
             </form>

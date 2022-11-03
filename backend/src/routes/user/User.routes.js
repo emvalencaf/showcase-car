@@ -41,7 +41,7 @@ router.post('/login',
     controller.login
 );
 
-router.put('/',
+router.put('/:id',
     authGuard,
     userUpdateValidation(),
     validate,

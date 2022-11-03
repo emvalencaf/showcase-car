@@ -6,7 +6,7 @@ import { api, requestConfig } from '../utils/config.utils';
     // Publish an car
 const publishCar = async (data, token) => {
 
-    const config = requestConfig("POST", data, token);
+    const config = requestConfig("POST", data, token, true);
 
     try{
 
@@ -62,12 +62,52 @@ const getAllCars = async () => {
 
 };
 
+    // Update car
+const updateCar = async (data, id, token) => {
+
+    const config = requestConfig('PUT', data, token, true);
+
+    try{
+
+        const res = await fetch(api + '/cars/' + id, config)
+            .then(res => res.json())
+            .catch(err => err);
+
+        return res;
+
+    } catch(err){
+        console.log(err);
+    };
+
+};
+    // Delete car
+const deleteCar = async (id, token) => {
+
+    const config = requestConfig("DELETE", null, token);
+
+    try {
+        
+        const res = await fetch(api + '/cars/' + id, config)
+            .then(res => res.json())
+            .catch(err => err);
+
+        return res;
+
+    } catch (err) {
+      
+        console.error(err);
+        
+    };
+
+};
+
 // carService
 const carService = {
     publishCar,
     getAllCars,
-    getCarById
-
+    getCarById,
+    deleteCar,
+    updateCar
 };
 
 export default carService;

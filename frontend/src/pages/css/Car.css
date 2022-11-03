@@ -4,9 +4,27 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 150px;
 }
 
 #car .car-card h1::first-letter{
     text-transform: uppercase;
 }
 
+
+#car picture{
+    width: 50%;
+    height: 50%;
+    max-height: 250px;
+    max-width: 300px;
+}
+img{
+    max-width: 300px;
+    max-height: 250px;
+    margin: auto;
+}
+
+#car .car-card{
+    width: 50%;
+    height: 50%;
+}

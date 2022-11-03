@@ -16,11 +16,11 @@ const initialState = {
     // Publish a car
 export const publishCar = createAsyncThunk(
     'car/publish',
-    async (car, thunkAPI) => {
+    async (dataCar, thunkAPI) => {
 
         const token = thunkAPI.getState().auth.user.token;
 
-        const data = await carService.publishCar(car, token);
+        const data = await carService.publishCar(dataCar, token);
 
         // Check for errors
         if(data.errors) return thunkAPI.rejectWithValue(data.errors[0]);
@@ -59,6 +59,43 @@ export const getAllCars = createAsyncThunk(
     }
 );
 
+    // Update a car
+export const updateCar = createAsyncThunk(
+    'car/update',
+    async (data, id, thunkAPI) => {
+
+
+        const token = thunkAPI.getState().auth.user.token;
+
+        const newData = await carService(data, id, token)
+        
+        // Check for errors
+        if(newData.errors) return thunkAPI.rejectWithValue(newData.errors[0]);
+
+        return newData;
+    }
+);
+
+    // Delete a car
+export const deleteCar = createAsyncThunk(
+    'car/delete',
+    async(id, thunkAPI) =>{
+
+        const token = thunkAPI.getState().auth.user.token;
+
+        console.log("delete car")
+
+        console.log(token);
+
+        console.log(id);
+
+        const data = await carService.deleteCar(id, token);
+
+        // Check for errors
+        if(data.errors) return thunkAPI.rejectWithValue(data.errors[0]);
+
+        return data;
+});
 
 
 
@@ -117,8 +154,42 @@ export const carSlice = createSlice({
                     state.error = null;
                     state.car = action.payload;
                 })
+                .addCase(deleteCar.pending, (state) => {
+                    state.loading = true;
+                    state.error = false;
+                })
+                .addCase(deleteCar.fulfilled, (state, action) => {
+    
+                    state.loading = false;
+                    state.success = true;
+                    state.error = null;
+                    state.message = action.payload.message;
+                })
+                .addCase(deleteCar.rejected, (state, action) => {
+                    state.loading = false;
+                    state.error = action.payload;
+                    state.photo = {};
+                })
+                .addCase(updateCar.pending, (state) => {
+                    state.loading = true;
+                    state.error = false;
+                })
+                .addCase(updateCar.fulfilled, (state, action) => {
+                    state.loading = false;
+                    state.success = true;
+                    state.error = null;
+                    state.car = action.payload;
+                    state.cars.push(state.car);
+                    state.message = "Carro atualizado com sucesso!"
+                })
+                .addCase(updateCar.rejected, (state, action) =>{
+                    state.loading = false;
+                    state.error = action.payload;
+                    state.car = {};
+                })
     }
 
 });
 
+export const { resetMessage } = carSlice.actions;
 export default carSlice.reducer;
