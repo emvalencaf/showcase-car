@@ -51,3 +51,8 @@ Para consumi-las é preciso um token válido, em razão do authGuard no backend.
 Entretanto, como o token - possivelmente não será válido - as rotas continuam protegidas pelo authGuard.
 
 Portanto, o projeto está limitado à apenas um mero uso funcional da autenticação - principalmente por ser meramente um exercício.
+
+
+### Rotas privadas não consumidas
+
+As rotas de usuário para atualizar o usuário não foi introduzida ao front-end. Apesar dela ter sido programada no backend.
