@@ -12,7 +12,8 @@ O projeto foi dividido em dois: frontend e backend; cada um dos projetos possui 
 
 - O projeto se limitou-se a um mostruário dos veículos, deixando pronto os fundamentos para prosseguir no desenvolvimento para um e-commerce;
 - O projeto não implementou restrições para cadastro de administradores, tampouco desenvolveu uma dashboard para a administração mais completa. Embora tenha deixado bases para o desenvolvimento;
-
+- Por ser um projeto de amostra também não foi desenvolvido um sistema de paginação aos dados recebidos do backend e nem implementados limitações ao tamanho das imagens no upload;
+  
 ### Como usar
 
 1. Leia o README dos diretórios do backend e frontend para a configuração correta do projeto;
